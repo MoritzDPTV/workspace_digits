@@ -2,7 +2,7 @@
 This workspace serves to download and organize images from *image-net.org* and *cocodataset.org* to build and train DNN models in DIGITS v6.1.0, originally for a work with NVIDIAs Jetson TX1.
 I recommend to use this workspace and to follow [this guide](https://rawgit.com/dusty-nv/jetson-inference/master/docs/html/index.html) to deploy deep learning.
 
-##Build a workspace
+## Build a workspace
 As we will have to download many images and datasets of images and the Jetson TX1s memory is limited, this workspace rather should be placed on another device such as your host computer. If you are planning to build the DNN models and its datasets on the Jetson TX1, you can just copy the image source folder of interest to it.
 
 
@@ -18,7 +18,7 @@ Note: To keep things simple, at the beginning of each script parameters can be c
 
 
 
-###ImageNet
+### ImageNet
 To train a model **for object classification**, we need a bunch of images. Therefore 'ImageNet' gives us a hand. ImageNet is an image database providing hundreds and thousands of images hierarchically organized consisting of nodes for all the different categeories of objects it supplies images of.
 
 
@@ -35,7 +35,7 @@ Images of your desired category, either from a text file or from an url containi
 
 
 
-###COCO
+### COCO
 'COCO' is a large image dataset designed **for object detection and segmentation**. As well it provides hundreds and thousands of images, though organized in a different way as ImageNet: the image dataset has a corresponding annotation dataset.
 
 As DIGITS uses the 'KITTI' format for object detection data, the source images must be organized equally. This format requires label text files corresponding to each single image. Therefore Jon Barker wrote a script 'coco2kitti.py' which converts COCO annotation files to KITTI format bounding box label files.
@@ -86,7 +86,7 @@ Your *train* and, if you chose so, your *val* directory will be found in a by th
 
 
 
-###Network
+### Network
 The directory *network* is supposed to be used to store your trained DNN models from DIGITS. In addition you there will find a script called 'network_test.sh'. This you can use to test your DNN models. In the beginning of its code, as always, you can define some parameters, such as which kind of network you will use, which of your DNN models shall be included and weather you want to use the console to analyse an image or the camera to have live inference. You can also go into the original directory of those consoles and enter everything by hand, but for a fast workflow, this script is useful and can be launched by entering:
 
 ```sh
