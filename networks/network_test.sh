@@ -45,7 +45,7 @@ then
 	then
 		# Loads the the model in the imagenet-camera
 		cd /home/ubuntu/inference/build/aarch64/bin
-		./imagenet-camera \object classification
+		./imagenet-camera \
 		--prototxt=$network/deploy.prototxt \
 		--model=$network/$caffemodel \
 		--labels=$network/labels.txt \
@@ -64,6 +64,7 @@ then
 # Writes a new 'deploy.prototxt' editing the layers to avoid compatibility issues
 sed -n -e :a -e '1,12!{P;N;D;};N;ba' $network/deploy.prototxt > $network/deploy.prototxt_new
 
+	# Image analysis
 	if [ $mode -eq 1 ]
 	then
 		# Loads the the model in the detectnet-console
@@ -78,7 +79,7 @@ sed -n -e :a -e '1,12!{P;N;D;};N;ba' $network/deploy.prototxt > $network/deploy.
 		# Shows the image
 		eog $output
 
-	# Processes only val
+	# Camera analysis
 	elif [ $mode -eq 2 ]
 	then
 		# Loads the the model in the detectnet-camera
@@ -99,12 +100,11 @@ sed -n -e :a -e '1,12!{P;N;D;};N;ba' $network/deploy.prototxt > $network/deploy.
 elif [ $opt -eq 3 ]
 then
 
-# Writes a new 'deploy.prototxt' editing the layers to avoid compatibility issues (to be edited)
-#sed -n -e :a -e '1,12!{P;N;D;};N;ba' $network/deploy.prototxt > $network/deploy.prototxt_new
+# Writes a new 'deploy.prototxt' editing the layers to avoid compatibility issues
+sed -n -e :a -e '1,30!{P;N;D;};N;ba' $network/deploy.prototxt > $network/deploy.prototxt_new
+sed -i 's/    pad: 100/    pad: 0/' $network/deploy.prototxt_new
 
-# Adds text files needed for TensorRT to the network (to be edited)
-#cp fpv-labels.txt $network/ & cp fpv-deply-colors.txt $network/
-
+	# Image analysis
 	if [ $mode -eq 1 ]
 	then
 		# Loads the the model in the segnet-console
@@ -113,14 +113,14 @@ then
 		--prototxt=$network/deploy.prototxt_new \
 		--model=$network/$caffemodel \
 		--labels=$network/fpv-labels.txt \
-		--colors=$NET/fpv-deploy-colors.txt \
+		--colors=$network/fpv-training-colors.txt \
 		--input_blob=data \
 		--output_blob=score_fr
 
 		# Shows the image
 		eog $output
 
-	# Processes only val
+	# Camera analysis
 	elif [ $mode -eq 2 ]
 	then
 		# Loads the the model in the segnet-camera
@@ -129,7 +129,7 @@ then
 		--prototxt=$network/deploy.prototxt_new \
 		--model=$network/$caffemodel \
 		--labels=$network/fpv-labels.txt \
-		--colors=$NET/fpv-deploy-colors.txt \
+		--colors=$network/fpv-training-colors.txt \
 		--input_blob=data \
 		--output_blob=score_fr
 
