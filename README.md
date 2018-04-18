@@ -1,4 +1,4 @@
-# Workspace for DIGITS
+# Workspace for DNNs
 This workspace serves to download and organize images for example from *image-net.org* or *cocodataset.org* to build and train DNN models for example in NVIDIAs DIGITS. Therefore I recommend to use this workspace and to follow [this guide](https://github.com/dusty-nv/jetson-inference) to deploy deep learning with DIGITS.
 
 ## Build a workspace
