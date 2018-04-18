@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 ## Config
 
 # Name of category (can be looked up at cocodataset.org/#explore)
@@ -11,13 +12,14 @@ category=keyboard
 directory=training
 
 # Process option (0 process both, 1 process train, 2 process val)
-opt=2
+opt=0
 
 # Name of train datatype
 data_train=train2017
 
 # Name of val datatype
 data_val=val2017
+
 
 
 # Creates workspace if doesn't exist yet
