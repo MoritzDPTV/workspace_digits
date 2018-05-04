@@ -1,5 +1,5 @@
 # Workspace for DNNs
-This workspace serves to download and organize images for example from *image-net.org* or *cocodataset.org* to build and train DNN models for example in NVIDIAs DIGITS. Therefore I recommend to use this workspace and to follow [this guide](https://github.com/dusty-nv/jetson-inference) to deploy deep learning with DIGITS.
+This workspace serves to download and organize images for example from *image-net.org* or *cocodataset.org* to build and extend a dataset needed to train DNN models. If you are planning to use DIGITS, I recommend to follow [this guide](https://github.com/dusty-nv/jetson-inference).
 
 ## Build a workspace
 As we will have to download many images and datasets of images and the Jetsons memory is limited, this workspace rather should be placed on another device such as your host computer. If you are planning then to build the models and its datasets on the Jetson, you can just copy the image source folder of interest to it.
@@ -45,7 +45,7 @@ $ python3 data_augmentation.py
 
 ### COCO
 'COCO' is a large image dataset designed **for object detection and segmentation**. As well it provides hundreds and thousands of images, though organized in a different way as image-net.org: here the image dataset has a corresponding annotation dataset.
-As DIGITS uses the 'KITTI' format for object detection data, the source images must be organized equally. This format requires label text files corresponding to each single image. Therefore Jon Barker wrote a script 'coco2kitti.py' which converts COCO annotation files to KITTI format bounding box label files.
+A format called 'KITTI' often is used for object detection data, for example by DIGITS, which is why the source images must be organized in a certain way. This format requires label text files corresponding to each single image. Jon Barker wrote a script called 'coco2kitti.py' which converts COCO annotation files to KITTI format bounding box label files.
 
 
 To use this script we need the COCO API library to be installed:
@@ -95,7 +95,7 @@ $ ./coco_download.sh
 
 
 ### Network
-The directory 'networks' is supposed to be used to store your trained DNN models from DIGITS using the jetson-inference runtime library. In addition you will find there a script called 'network\_test.sh'. This you can use to test your DNN models. In the beginning of its code, as always, you can define some parameters, such as which kind of network you want to use, which of your DNN models shall be included and weather you want to use the console to analyse an image or the camera to deploy live inference. You can also go into the original directory of those consoles and enter everything by hand, but for a fast workflow, this script is useful and can be modified and launched by entering:
+The directory 'networks' is supposed to be used to store your trained DNN models. Besides this you will find there a script called 'network\_test.sh'. This you can use to test your in DIGITS trained DNN models using the jetson-inference runtime library. In the beginning of its code, as always, you can define some parameters, such as which kind of network you want to use, which of your DNN models shall be included and weather you want to use the console to analyse an image or the camera to deploy live inference. You can also go into the original directory of the jetson-inference to run the consoles and enter everything by hand, but for a fast workflow this script is useful and can be modified and launched by entering:
 
 ```sh
 $ cd ~/workspace_dnn/networks
